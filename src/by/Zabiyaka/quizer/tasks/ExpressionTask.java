@@ -2,23 +2,25 @@ package by.Zabiyaka.quizer.tasks;
 
 import by.Zabiyaka.quizer.*;
 
-import java.util.Objects;
-
-public class ExpressionTask implements Task {
-    public ExpressionTask() {
-        expected = 4;
-    }
+abstract public class ExpressionTask implements Task {
     public String getText() {
-        return "2 + 2 = ?";
+        return text;
     }
 
     public Result validate(String answer) {
-        if (Objects.equals(answer, expected.toString())) {
+        int got;
+        try {
+            got = Integer.parseInt(answer);
+        } catch (NumberFormatException exception) {
+            return Result.INCORRECT_INPUT;
+        }
+        if (got == expected) {
             return Result.OK;
         } else {
-            return Result.WRONG;
+            return Result.WRONG_ANSWER;
         }
     }
 
-    private Integer expected;
+    protected int expected;
+    protected String text;
 }

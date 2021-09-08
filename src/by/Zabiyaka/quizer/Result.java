@@ -2,6 +2,6 @@ package by.Zabiyaka.quizer;
 
 public enum Result {
     OK,
-    WRONG,
+    WRONG_ANSWER,
     INCORRECT_INPUT
 }
